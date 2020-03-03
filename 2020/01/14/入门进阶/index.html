@@ -5,13 +5,17 @@
   
 
   
-  <title>Hexo</title>
+  <title>javascript入门进阶 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="#javascript 入门进阶 这里主要讲解一下在入门阶段很难注意的一些知识点，不一定有用。但是会了总比不会强。1.HTML为&lt;script&gt;标签准备的6个属性：-async：可选。表示应该立刻下载脚本，但不应妨碍页面中的其他操作。（其他的下载可以等待）-charset:可选。表示通过src指定的代码的字符集。-defer：可选。表示脚本可以延迟到文档被解析和显示之后在执行。该版本值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript入门进阶">
+<meta property="og:url" content="http://yoursite.com/2020/01/14/%E5%85%A5%E9%97%A8%E8%BF%9B%E9%98%B6/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#javascript 入门进阶 这里主要讲解一下在入门阶段很难注意的一些知识点，不一定有用。但是会了总比不会强。1.HTML为&lt;script&gt;标签准备的6个属性：-async：可选。表示应该立刻下载脚本，但不应妨碍页面中的其他操作。（其他的下载可以等待）-charset:可选。表示通过src指定的代码的字符集。-defer：可选。表示脚本可以延迟到文档被解析和显示之后在执行。该版本值">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-14T02:08:22.000Z">
+<meta property="article:modified_time" content="2020-03-03T09:27:13.405Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,90 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-第一篇博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2020-02-29T08:51:16.585Z" itemprop="datePublished">2020-02-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">第一篇博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#js新手村出村之路–基础知识<br>在这里默认你已经粗粗的自学过了一遍js知识。（<em>也许是在昏昏欲睡的课堂上听了两分钟，也许是跟着b站上的视频打了一遍。who cares</em>）<br>在下面的内容中我将整理一些在平常的学习中经常容易忘记的部分。并且尽自己的可能，解释他们。</p>
-<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="DOM是什么？"><a href="#DOM是什么？" class="headerlink" title="DOM是什么？"></a>DOM是什么？</h3><blockquote>
-<p>文档对象模型（英语：Document Object Model，缩写DOM），是W3C组织推荐的处理可扩展置标&gt;语言的标准编程接口。<br>(<em>简单一点呢</em>)<br>一种对文档内容进行抽象或者概念性的方法。</p>
-</blockquote>
-<p>（<em>糟糕透顶了对不对！这是在说什么</em>）<br>在这里可以做一个类比.<br>假如说我们看见一个树,我会说”看,这是大树!”每个周围听见我说的话的人都知道我说的是什么,知道我说的”大树”就是指我眼前的这个东西.<br>具体到编程中,就是我想加入一个图片,我必须用一个<code>&lt;images&gt;</code>标签来进行加入,这个就是抽象或概念性的方法.(浏览器看见<code>&lt;images&gt;</code>标签就知道这是图片)<br>下面具体的讲解一下DOM中的几个字母都是什么意思.<br><strong>文档：DOM中的D</strong><br>document文档<br>当创建了一个网页并把它加载到web浏览器中的时候，DOM就已经出现了，他把你的网页文档转换成一个文档对像.<br><strong>对象：DOM中的O</strong><br>object对象<br>    对象有三种类型<br>    ? 用户定义对象—-就是用户们自己定义的<br>    ? 内建对象—-JavaScript中自己带的<br>    ? 宿主对象——浏览器中提供的。</p>
-<h6 id="Window对象对应着浏览器本身，这个对象-的属性和方法被称之为BOM"><a href="#Window对象对应着浏览器本身，这个对象-的属性和方法被称之为BOM" class="headerlink" title="Window对象对应着浏览器本身，这个对象 的属性和方法被称之为BOM"></a>Window对象对应着浏览器本身，这个对象 的属性和方法被称之为BOM</h6><p><strong>模型：DOM中的M</strong><br>Model<br>DOM会把文档表示成一个树，并使用parent,child等来描述他们之间的关系。<br><strong>找一个DOM树的图像</strong><br><img src="https://i.loli.net/2020/02/28/AXuHbIs2CDxVtwh.png" alt="dom.png"><br>在html之后表示了文档的开始，因为这个文档中的所有元素都包含在这个html中。<br>1.HTML元素就是根。<br>2.接下来会看到有<code>&lt;head&gt;</code>and<code>&lt;body&gt;</code>两个分支。<br>3.他们相互不包含。……<br>4.这个被称为节点树。<br>你会看见这里面有以下几种节点<br>1.元素节点<br>2.文本节点<br>3.属性节点<br>例如<code>&lt;p title=&quot;a gentle。。。。&quot;&gt;DON&lt;/p&gt;</code><br>title就是一个属性节点,<code>&lt;p&gt;&lt;/p&gt;</code>是一个元素节点.</p>
-<h5 id="这里要引申一下"><a href="#这里要引申一下" class="headerlink" title="这里要引申一下."></a>这里要引申一下.</h5><p>在CSS中采用的也是相同的概念。<br>继承是css技术中的功能。类似于DOM，css也是把文档视为一棵树。<br>节点树上的各个元素将继承其父元素的样式属性。<br>假设<code>&lt;body&gt;</code>定义了一些颜色和字体，包含在其元素中的所有元素将自动获取那些样式。<br>这其实就是树的一种体现。<br>（<em>但是新手在初期能用到的也就是一下两种方法。</em>）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aLi=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>);<span class="comment">//可以捕获标签名</span></span><br><span class="line"><span class="keyword">var</span> ali1=<span class="built_in">document</span>.getElementById();<span class="comment">//捕获id属性</span></span><br></pre></td></tr></table></figure>
-<p>（<em>好了这也就是我所知道得了，我会在将来总结更多的知识</em>）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="ck77d905a0000fgv52snecw2g" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-第一篇文章-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-1/" class="article-date">
-  <time datetime="2020-02-29T08:33:09.000Z" itemprop="datePublished">2020-02-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-1/">第一篇文章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-1/" data-id="ck77cma0l0003s8v53qip1d1a" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-入门进阶" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-入门进阶" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/01/14/%E5%85%A5%E9%97%A8%E8%BF%9B%E9%98%B6/" class="article-date">
   <time datetime="2020-01-14T02:08:22.000Z" itemprop="datePublished">2020-01-14</time>
@@ -158,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/14/%E5%85%A5%E9%97%A8%E8%BF%9B%E9%98%B6/">javascript入门进阶</a>
+    <h1 class="article-title" itemprop="name">
+      javascript入门进阶
     </h1>
   
 
@@ -267,132 +188,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hexo的部署" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/12/hexo%E7%9A%84%E9%83%A8%E7%BD%B2/" class="article-date">
-  <time datetime="2020-01-12T14:54:37.000Z" itemprop="datePublished">2020-01-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/12/hexo%E7%9A%84%E9%83%A8%E7%BD%B2/">helloWorld</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+          第一篇文章
         
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/12/hexo%E7%9A%84%E9%83%A8%E7%BD%B2/" data-id="ck77d1udd00002ov56ut18i0d" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/12/hexo%E7%9A%84%E9%83%A8%E7%BD%B2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">helloWorld</div>
+    </a>
+  
+</nav>
+
   
 </article>
-
-
-  
-    <article id="post-javascript" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/12/javascript/" class="article-date">
-  <time datetime="2020-01-12T14:54:37.000Z" itemprop="datePublished">2020-01-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/12/javascript/">helloWorld</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/12/javascript/" data-id="ck77d1udi00012ov556tc7wwm" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-java" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/12/java/" class="article-date">
-  <time datetime="2020-01-12T14:48:53.253Z" itemprop="datePublished">2020-01-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/12/java/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/12/java/" data-id="ck77d1udp00022ov52glx8p93" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
