@@ -123,7 +123,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-1/">第一篇文章</a>
+      <a class="article-title" href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-1/">JavaScript进阶入门（二）</a>
     </h1>
   
 
@@ -131,7 +131,97 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="JavaScript进阶入门（二）"><a href="#JavaScript进阶入门（二）" class="headerlink" title="JavaScript进阶入门（二）"></a>JavaScript进阶入门（二）</h1><h3 id="转换为数字"><a href="#转换为数字" class="headerlink" title="转换为数字"></a>转换为数字</h3><h4 id="使用parseInt（）"><a href="#使用parseInt（）" class="headerlink" title="使用parseInt（）"></a>使用parseInt（）</h4><p>parseInt函数会先查看位置0处的字符，如果该位置不是有效数字，则将返回NaN，如果0处的字符是数字，则将查看位置1处的字符，并进行同样的测试，以此类推在整个验证过程中，直到发现非数字字符为止，此时paresInt（）函数将前面分析合法的数字字符转化为数值，并返回。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">parseInt</span>(<span class="string">"123abc"</span>));<span class="comment">//返回数字123</span></span><br><span class="line">alert(<span class="built_in">parseInt</span>(<span class="string">"1.73"</span>));<span class="comment">//返回数字1</span></span><br><span class="line">alert(<span class="built_in">parseInt</span>(<span class="string">".123"</span>));<span class="comment">//返回值NaN</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><em>浮点数中的点号对于parseInt（）函数来说属于非法字符，因此不会装换它，并返回。</em></p>
+</blockquote>
+<h4 id="使用parseFloat函数"><a href="#使用parseFloat函数" class="headerlink" title="使用parseFloat函数"></a>使用parseFloat函数</h4><p>parseFloat函数与parseInt函数用法基本相同，但是它能够识别第一个出现的小数点号，而第二个小数点号则被视为非法的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">parseFloat</span>(<span class="string">"1.234.11"</span>));<span class="comment">//返回数值1.234</span></span><br></pre></td></tr></table></figure>
+<h4 id="使用乘号运算符"><a href="#使用乘号运算符" class="headerlink" title="使用乘号运算符"></a>使用乘号运算符</h4><p>加号运算符不仅能够执行数值求和运算，还可以吧字符串连接来。由于JavaScript处理字符串连接操作的优先级要高于数字求和运算。因此，当数字字符串与数值使用加号连接时，将优先执行连接操作，而不是求和运算。<br>由此可以看出，使用*号可以利用JavaScript的自动转换完成这个目标。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b=<span class="string">"1"</span>;</span><br><span class="line">alert(a+(b*<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="转换为布尔值"><a href="#转换为布尔值" class="headerlink" title="转换为布尔值"></a>转换为布尔值</h3><p>任何值如果在前面加上一个逻辑非运算符，JavaScript都会把这个表达式看作是逻辑运算，执行运算时，先把值转换为布尔值，然后再执行逻辑非运算。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=!<span class="number">0</span>;<span class="comment">//true</span></span><br><span class="line"><span class="keyword">var</span> b=!<span class="number">1</span>;<span class="comment">//false</span></span><br><span class="line"><span class="keyword">var</span> c=!<span class="literal">NaN</span>;<span class="comment">//true</span></span><br><span class="line"><span class="keyword">var</span> d=!<span class="literal">null</span>;<span class="comment">//true</span></span><br><span class="line"><span class="keyword">var</span> e=!<span class="literal">undefined</span>;<span class="comment">//true</span></span><br><span class="line"><span class="keyword">var</span> f=![];<span class="comment">//false</span></span><br><span class="line"><span class="keyword">var</span> g=!&#123;&#125;;<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>使用Boolean（）构造函数转换</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> b=<span class="number">1</span>;</span><br><span class="line">a=<span class="keyword">new</span> <span class="built_in">Boolean</span>(a);<span class="comment">//false</span></span><br><span class="line">b=<span class="keyword">new</span> <span class="built_in">Boolean</span>(b);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h3 id="把对象转化为值"><a href="#把对象转化为值" class="headerlink" title="把对象转化为值"></a>把对象转化为值</h3><h4 id="对象在逻辑运算环境中的转换"><a href="#对象在逻辑运算环境中的转换" class="headerlink" title="对象在逻辑运算环境中的转换"></a>对象在逻辑运算环境中的转换</h4><p>对象在逻辑运算环境中，则对象被转换为true。这包括所有类型的对象，即使是值为false的包装对象也为true、</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</span><br><span class="line"><span class="keyword">var</span> b=<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">var</span> c=<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">""</span>);</span><br><span class="line">a &amp;&amp; alert(a);<span class="comment">//a转换为布尔值true，但是她提示的字符串转换至为false</span></span><br><span class="line">b &amp;&amp; alert(b);<span class="comment">//b转换为布尔值true，但是她提示的字符串转换至为"0"</span></span><br><span class="line">c &amp;&amp; alert(c);<span class="comment">//c转换为布尔值true，但是她提示的字符串转换至为""</span></span><br></pre></td></tr></table></figure>
+<h4 id="数组在数值运算环境中的转换"><a href="#数组在数值运算环境中的转换" class="headerlink" title="数组在数值运算环境中的转换"></a>数组在数值运算环境中的转换</h4><p>当数组被用在数值运算环境中是，数组将根据包含的元素来决定转换的值。<br>1）如果是空数组，则被转为数值0.当数组为空的时候，JavaScript将调用toString（）方法把数组换位空字符串，然后经空字符串强制转换为0.<br>2）如果数组仅包含一个数字元素，则被转换为该数字的数值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=[<span class="number">5</span>];</span><br><span class="line">a=a*<span class="number">1</span>;<span class="comment">//投放到数值运算环境中</span></span><br><span class="line">alert(a);<span class="comment">//返回数值5</span></span><br><span class="line">alert(<span class="keyword">typeof</span> a);<span class="comment">//返回数值类型numbmer</span></span><br></pre></td></tr></table></figure>
+<p>3）如果数组包含多个元素，或仅包含一个非数字元素，则返回NaN</p>
+<h4 id="对象在模糊环境"><a href="#对象在模糊环境" class="headerlink" title="对象在模糊环境"></a>对象在模糊环境</h4><p>1）当对象与数值进行加号运算是，则会尝试把对象转化为数值，然后参与求和运算，如果不能够转化为有效数值，则执行字符串连接操作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"a"</span>);</span><br><span class="line"><span class="keyword">var</span> b=<span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);</span><br><span class="line">a=a+<span class="number">0</span>;</span><br><span class="line">b=b+<span class="number">0</span>;</span><br><span class="line">alert(a);<span class="comment">//返回字符串"a0"</span></span><br><span class="line">alert(b);<span class="comment">//返回数值1</span></span><br></pre></td></tr></table></figure>
+<p>2)当对象与字符串进行加号运算时，则直接转化为字符串，进行连接操作<br>3）当对象与数值进行比较运算时，则会尝试吧对象转换为数值。</p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><p>优先级：表示运算符参与的先后顺序，顺序越大，运算优先级就越高。</p>
+<h4 id="15"><a href="#15" class="headerlink" title="15"></a>15</h4><p>.（点号）<br>[]中括号<br>()小括号<br>new</p>
+<h4 id="14"><a href="#14" class="headerlink" title="14"></a>14</h4><p>++（连加）<br>–（连减）<br>+（加号）从右到左<br>*（乘法运算）</p>
+<hr>
+<h3 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h3><p>NAN和其他的任何值相加都是NaN</p>
+<p>减法运算中如果有一个运算数不是数字则返回NaN，如果数字为字符串，则会把它转换为数值之后在进行运算。</p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>逻辑与运算符&amp;&amp;的逻辑解析：</p>
+<p>首先，计算第一个运算数，即左侧表达式，如果左侧的表达式的计算值可以被转换为false，那么就会结束计算，直接返回第一个运算数的值。<br>由于这种特性，在程序中也会利用它设计简易运算</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(n==<span class="number">1</span>) &amp;&amp; alert(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>逻辑或运算符||的逻辑解析：</p>
+<p>计算第1个运算数。如果左侧的表达式的计算值可以被转换为true，那么就直接返回第一个运算数的值，忽略第2个运算数（既不执行）。</p>
+<p><strong>&amp;&amp;的优先级高于||</strong></p>
+<p>逻辑非运算符！是一元运算符，直接放在运算数之前，将对运算数执行布尔取反操作，并返回<strong>布尔值</strong></p>
+<h1 id="等值检测"><a href="#等值检测" class="headerlink" title=" 等值检测"></a> <strong>等值检测</strong></h1><p>==（相等）      比较两个运算数的返回值，看是否相等</p>
+<p>！=（不相等）   比较两个运算数的返回值，看是否不相等</p>
+<p>===（全等）     比较两个运算数的返回值，看是否相等，同时检测他们的数据类型是否相等</p>
+<p>！==（不全等）   比较两个运算数的返回值，看是否不相等，同时检测它们的数据类型是否不相等。</p>
+<p><strong>相等运算的比较规则</strong></p>
+<p>如果运算数是布尔值，在比较之前转化为数值。</p>
+<p>如果一个运算数是字符串，另一个运算数是数字，在比较之前先尝试把字符串转化为数字。</p>
+<p>如果一个运算数是数字，另一个运算数是对象，在比较前先将对象转化为数字。</p>
+<p>如果一个运算数是字符串，另一个运算数的对象，在比较之前先尝试把对象转换为字符串。</p>
+<p>如果两个运算数都是对象，那么比较他们的引用值。</p>
+<p><strong>对象操作运算符</strong></p>
+<p>new 运算符可以根据构造函数创建一个新的对象，并初始化这个对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="keyword">constructor</span>(arguments)</span><br></pre></td></tr></table></figure>
+
+<p>constructor必须是一个构造函数表达式，其后面应该是利用小括号包含的参数列表，参数可有可无，参数之间通过逗号进行分割。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> a=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>new运算符被执行的时候，首先会创建一个新对象接着new运算符调用指定的构造函数，这里是Array数组的构造函数。</p>
+<p>以下代码可以自定义类，并使用它创建新的对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">this</span>.y=<span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> b=<span class="keyword">new</span> a;  <span class="comment">//创建自定义类a的对象实例</span></span><br><span class="line">alert(b.x);  <span class="comment">//返回1，调用对象的成员</span></span><br></pre></td></tr></table></figure>
+<p>对于自定义类，只能通过new运算来进行实例化</p>
+<p>（这个没必要太懂，就是知道JavaScript的类实际上是一个函数，调用这个函数，就自动造成了对象。之后会讲）</p>
+<p><strong>delete运算符</strong></p>
+<p>delete运算符能够删除指定对象的属性，数组元素或变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=&#123;</span><br><span class="line">    x:<span class="number">1</span>;</span><br><span class="line">    y:<span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line">alert(a.x);<span class="comment">//返回1，调用对象成员</span></span><br><span class="line"><span class="keyword">delete</span> a.x;<span class="comment">//删除对象成员x</span></span><br><span class="line">alert(a.x);<span class="comment">//返回undefined,没有找到该对象成员</span></span><br></pre></td></tr></table></figure>
+<p>不是所有的对象成员或变量都可以被删除，某些内置对象的预定义和客户端对象成员，以及使用var语句生命的变量都是不允许删除的。</p>
+<p>如果删除不存在的对象成员，或者非对象成员，数组元素，变量时，他会返回true，所以使用delete运算时，应该注意这个问题，防止和成功删除发生混淆。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=&#123;</span><br><span class="line">    x:<span class="number">1</span>;</span><br><span class="line">    y:<span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line">alert(<span class="keyword">delete</span> a); <span class="comment">//返回false，说明不允许删除</span></span><br><span class="line">alert(<span class="keyword">delete</span> a.z)<span class="comment">//返回true，说明不存在该属性</span></span><br><span class="line">alert(<span class="keyword">delete</span> <span class="built_in">Object</span>)<span class="comment">//返回true，说明删除的不是成员，元素或变量</span></span><br><span class="line">alert（<span class="keyword">delete</span> b）<span class="comment">//返回true，说明不存在该变量。</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>中括号和点括号运算符</strong></p>
+<p>中括号和点号都属于存取运算符，用于访问对象后数组。使用中括号运算符（[]）可以存取数组元素值。</p>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=&#123;</span><br><span class="line">    x:<span class="number">1</span>;</span><br><span class="line">    y:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">alert(a[<span class="string">"x"</span>]);<span class="comment">//返回1，读取属性x的值。</span></span><br></pre></td></tr></table></figure>
+
+<p>点号运算符（.）可以存取对象的属性值，它比中括号灵活方便，因为点号运算符右侧可以直接指定属性的标识符，而不是属性名称的字符串或变量。</p>
+<p>对于中括号预算福可以通过变量或字符串表达式来传递特定值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b=<span class="string">"x"</span>;</span><br><span class="line"><span class="keyword">var</span> a=&#123;</span><br><span class="line">    x:<span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line">alert(a[b]);</span><br><span class="line">alert(a.b);</span><br></pre></td></tr></table></figure>
+<p>在中括号中的字符串形状的数字会被转化成数字来进行运算。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=[<span class="string">"x"</span>,<span class="literal">true</span>,&#123;&#125;];</span><br><span class="line">alert(a[<span class="number">1</span>]);</span><br><span class="line">alert(a[<span class="string">"1"</span>]);</span><br></pre></td></tr></table></figure>
+
+<p><strong>小括号运算符</strong></p>
+<p>小括号是一个特殊的运算符，他没有固定数目的运算数。其中第一个运算数必须是一个函数名或者引用函数的表达式。</p>
+<p>f(a,b,c);</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"Hello world"</span>);</span><br><span class="line">&#125;</span><br><span class="line">a;</span><br><span class="line">a();</span><br><span class="line">a(<span class="number">1</span>,<span class="string">"string"</span>,&#123;&#125;,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<p>小括号运算符在执行的时候是这样的，先对没个运算数进行计算，然后调用第一个运算数所指的函数，同时把余下的运算数传递给函数作为它的参数。</p>
+<p><strong>其他运算符</strong></p>
+<p>条件运算符</p>
+<p>条件运算符是JavaScript唯一的三元运算符，语法形式如下：</p>
+<p>a?x:y</p>
+<p>a运算数必须是一个<strong>布尔值的表达式</strong>，即返回值必须是一个布尔值，一般使用比较表达式来表示。x和y是任意类型的值。如果运算数a返回值为<strong>true</strong>时，将<strong>执行x运算</strong>，并返回该表达式的值。如果运算数a返回值<strong>false</strong>时，将<strong>执行y运算数</strong>，并返回该表达式的值。</p>
+<p>逗号运算符</p>
+<p>逗号运算符是一个二元运算符，他能够<strong>执行运算符左侧的运算数</strong>，然后在<strong>执行右侧的运算数</strong>，最后仅把右侧运算数的值作为结果返回。</p>
+<p>可以用来连续声明多个变量并赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>,d=<span class="number">4</span>;</span><br><span class="line"><span class="comment">//等于</span></span><br><span class="line"><span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b=<span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> c=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">var</span> d=<span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+
+
+
       
     </div>
     <footer class="article-footer">
@@ -427,7 +517,7 @@
           </li>
         
           <li>
-            <a href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-1/">第一篇文章</a>
+            <a href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-1/">JavaScript进阶入门（二）</a>
           </li>
         
           <li>
