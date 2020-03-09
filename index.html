@@ -64,6 +64,137 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcode必要技巧-动态规划-一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/09/leetcode%E5%BF%85%E8%A6%81%E6%8A%80%E5%B7%A7-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E4%B8%80/" class="article-date">
+  <time datetime="2020-03-09T05:52:36.000Z" itemprop="datePublished">2020-03-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/09/leetcode%E5%BF%85%E8%A6%81%E6%8A%80%E5%B7%A7-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E4%B8%80/">leetcode必要技巧--动态规划(一)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先我们要搞清楚什么是动态规划</p>
+<blockquote>
+<p>  动态规划是运筹学中用于求解决策过程中的最优化数学方法。当然，我们在这里关注的是作为一种算法设计技术，作为一种使用多阶段决策过程最优的通用方法。</p>
+</blockquote>
+<p>当然这个很难理解,但是按照本人的理解.<br>实际上就是一个种类的问题.<br>在这个问题中,我们只需要列出一个方程,就能用递归的方法解决大部分呢问题.</p>
+<p>(突然看到一个不错的消息)</p>
+<blockquote>
+<p>动态规划问题的一般形式就是求最值。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。</p>
+</blockquote>
+<blockquote>
+<p>既然是要求最值，核心问题是什么呢？求解动态规划的核心问题是穷举。因为要求最值，肯定要把所有可行的答案穷举出来，然后在其中找最值呗。</p>
+</blockquote>
+<p>作者：labuladong<br>链接：<a href="https://leetcode-cn.com/problems/coin-change/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-wei-lai-bu-ke/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/coin-change/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-wei-lai-bu-ke/</a><br>来源：力扣（LeetCode）</p>
+<p>总结一下,就是对整个内容进行穷举操作,恰好这种穷举操作有着大量的可重复性,可以利用递归来解决.</p>
+<p>个人认为动态规划有俩个核心</p>
+<ol>
+<li>递归</li>
+<li>冗余处理</li>
+</ol>
+<p>我们就用leetcode中的零钱兑换.</p>
+<p>给定不同面额的硬币 coins 和一个总金额 amount。</p>
+<p>编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。</p>
+<p>示例 1:</p>
+<p>输入: coins = [1, 2, 5], amount = 11</p>
+<p>输出: 3</p>
+<p>解释: 11 = 5 + 5 + 1</p>
+<p>示例 2:</p>
+<p>输入: coins = [2], amount = 3</p>
+<p>输出: -1</p>
+<p>说明:</p>
+<p>你可以认为每种硬币的数量是无限的。</p>
+<p>这里还要引申一下,一开始我想到的算法使用amount(总金额)%5(coins中最大的硬币)得出余数(在这里假设为remainder).再用remainder(上面得出的数)%2(coins中第二大的硬币面值)不断地循环下去.</p>
+<p>据说这叫贪心算法.</p>
+<p>这个无疑是错误的.比如[1,5,11] 凑15</p>
+<p>那么按照这个贪心算法的唯一结果是 一个11和4个1</p>
+<p>但是正确的答案是三个5</p>
+<p>这就是这种算法的局限性</p>
+<p>说回正题</p>
+<p>要想解决问题,我们就必须分析这个问题.</p>
+<p>我们就必须化出解决这个问题的穷举图像</p>
+<p><img src="https://pic.leetcode-cn.com/5033d5448653c7a31393fbaa365b1f638933d5e467315e53641598e895a2de93-image.png" alt="image.png"></p>
+<p>这里说一下,这个也是从leetcode上拿的.</p>
+<p>我们看这个图像,最上面有一行小字,翻译如下:</p>
+<p>emmm英语不好,挑重点说吧</p>
+<p>[1,2,3]种面值的币子<br>凑6<br>我们会发现如果要遍历这个树,就会发现每一个节点执行的操作实际上都是大同小异的,而且面对的数据也都是大同小异的(都是那三个数,1,2,3都不会变化)</p>
+<p>所以也正是因为如此.我们可以采用.递归的方式.</p>
+<p>在这里就要说到处理这种方式的诀窍了.如果按照递归的思路一直深究下去,那么唯一的结果就是蒙圈.</p>
+<p>毕竟太深入,太复杂了.</p>
+<p>可是我们要意识到,其实这个算法再每一个节点上都是相同的,都可以用一样的算法.于是我们只要列出第一层和第二层之间的关系就可以用这个关系为突破口,想办法用递归实现这个问题.</p>
+<blockquote>
+<p>F(S)=F(S-C)+1;</p>
+</blockquote>
+<blockquote>
+<p>F(S):所要求的目标-&gt;最少的硬币个数</p>
+</blockquote>
+<blockquote>
+<p>S:总金额</p>
+</blockquote>
+<blockquote>
+<p>c:(所用)最后一个硬币的面值</p>
+</blockquote>
+<pre><code>eg:
+
+   在最顶层 6节点开始有以下三种情况
+
+   F(6)=F(6-1)+1=F(5)+1
+   F(6)=F(6-2)+1=F(4)+1
+   F(6)=F(6-3)+1=F(3)+1
+   我们要知道其中F(5)因为也是一个函数所以,也会向下裂变化为
+   F(5)=F(5-1)+1
+   F(5)=F(5-2)+1
+   F(5)=F(5-3)+1
+   然后面还可以裂变,直到s-c=0或者s-c&lt;0为止(这就是我们迭代的停止条件,s-c&gt;0)
+
+   这就是用迭代形成了一个遍历的过程.相比while这种方式,方便了很多倍.[这个遍历的实质上得出的是每一条可能出现的路径所要消耗的硬币数量]
+   但是我们遍历的目的是为了找出一条最短的路径,使用最少的硬币数量,所以我们需要对其进行比较.
+   也就是在
+   --A代码块
+   F(6)=F(6-1)+1=F(5)+1
+   F(6)=F(6-2)+1=F(4)+1
+   F(6)=F(6-3)+1=F(3)+1
+   ---
+   这三个可能中选择最小的一个.
+   F(S)是最少硬币的个数.
+   而如果要求出这三个我们就要知道F(5,4,3)[简写]中谁最小.于是这就要到了,我们要知道
+   F(5)=F(5-1)+1
+   F(5)=F(5-2)+1
+   F(5)=F(5-3)+1
+   种谁最小的问题.
+   完全是一摸一样的,这就是递归最好的温床.</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//coins 硬币面值(是个数组,在迭代过程中从不变化)</span></span><br><span class="line">    <span class="comment">//rem 总值就是S</span></span><br><span class="line">    <span class="comment">//count[] 记录的信息(这个是为了防止重复计算的问题)</span></span><br><span class="line"><span class="comment">//这个for就是找出A代码块中那个线路最小的步骤,存在min中</span></span><br><span class="line"> <span class="keyword">for</span> (int coin : coins) &#123;</span><br><span class="line">      int res = coinChange(coins, rem - coin, count);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//F(S)=F(S-C)+1;</span></span><br><span class="line">      <span class="comment">//rem-coin对应的就是S-C</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (res &gt;= <span class="number">0</span> &amp;&amp; res &lt; min)</span><br><span class="line">      <span class="comment">//min的结果实际上就是最小的res+1就是F(S).而res实际上是</span></span><br><span class="line">        min = <span class="number">1</span> + res;</span><br><span class="line">        <span class="comment">//F(S)=F(S-C)+1;</span></span><br><span class="line">        <span class="comment">//res=function(coins,S-C,count);</span></span><br><span class="line">        <span class="comment">//min=function(coins,S-C,count)+1;</span></span><br><span class="line">    &#125;</span><br><span class="line">    代码看到这里我们就知道了这个部分我们已经完全实现了这个式子中所要求的一切.</span><br><span class="line">    我们所要做的其实就是复刻你列出的式子.</span><br><span class="line">    不必想的太深.</span><br><span class="line">    当你发现他们每个节点高度的统一性的时候,其实只要解决其中一个节点,剩下的节点就都解决了.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">作者：LeetCode-Solution</span><br><span class="line">链接：https:<span class="comment">//leetcode-cn.com/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/</span></span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+<p>这里贴一下完整的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="keyword">int</span>[] coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//  if(amount&lt;1)</span></span><br><span class="line">          <span class="keyword">return</span> coinChange(coins,amount,<span class="keyword">new</span> <span class="keyword">int</span>[amount]);        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    在这里我们会发现我们的要想递归就只能拿这个函数制作递归,但是s-c就无法实现了,所以我们只能重载一个.让这个最终返回内容.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//coins 硬币面值</span></span><br><span class="line">    <span class="comment">//rem 总值</span></span><br><span class="line">    <span class="comment">//count[] 记录的信息</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="keyword">int</span> [] coins,<span class="keyword">int</span> rem,<span class="keyword">int</span> [] count)</span></span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(rem==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//解决输入不合理</span></span><br><span class="line">            <span class="keyword">if</span>(rem&lt;<span class="number">0</span>)<span class="keyword">return</span> -<span class="number">1</span>;<span class="comment">//解决输入合理</span></span><br><span class="line">            <span class="keyword">if</span>(count[rem-<span class="number">1</span>]!=<span class="number">0</span>)&#123;<span class="keyword">return</span> count[rem-<span class="number">1</span>];&#125;<span class="comment">//如果以前已经有了记录,就返回被记录的数值</span></span><br><span class="line">            <span class="keyword">int</span> min=Integer.MAX_VALUE;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;coins.length;i++)&#123;</span><br><span class="line">                <span class="keyword">int</span> res=coinChange(coins,rem-coins[i],count);<span class="comment">//递归,如果以前有了相关的内容会直接反回</span></span><br><span class="line">                <span class="comment">//如果是最小的,那么就加1,作为最少币数</span></span><br><span class="line">                <span class="keyword">if</span>(res&gt;=<span class="number">0</span>&amp;&amp;min&gt;res)&#123;</span><br><span class="line">                    min=res+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//min有没有被改变,要是改变了就不会是原值,自然回min</span></span><br><span class="line">            count[rem - <span class="number">1</span>] = (min == Integer.MAX_VALUE) ? -<span class="number">1</span> : min;</span><br><span class="line">            <span class="keyword">return</span> count[rem - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/09/leetcode%E5%BF%85%E8%A6%81%E6%8A%80%E5%B7%A7-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E4%B8%80/" data-id="ck7k1v3gv0000h0v5cd0q1wnj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-第一篇博客" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
@@ -500,7 +631,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
     </div>
   </div>
 
@@ -511,6 +642,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/03/09/leetcode%E5%BF%85%E8%A6%81%E6%8A%80%E5%B7%A7-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E4%B8%80/">leetcode必要技巧--动态规划(一)</a>
+          </li>
         
           <li>
             <a href="/2020/02/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">第一篇博客</a>
@@ -526,10 +661,6 @@
         
           <li>
             <a href="/2020/01/12/hexo%E7%9A%84%E9%83%A8%E7%BD%B2/">helloWorld</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/12/javascript/">helloWorld</a>
           </li>
         
       </ul>
